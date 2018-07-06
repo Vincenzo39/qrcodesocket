@@ -8,10 +8,13 @@ app.get('/', (req, res) => res.send("Server : OK !"));
 io.on('connection', (socket) => {
   
     socket.on('scanCode', function(data){
-      console.log(data);
       io.emit('codeIsScanned', data);   
     });
-    
+  
+    socket.on('allumeLed', function(data){
+      io.emit('allumeLed', data.isAuthorize);   
+    });
+  
   });
    
   var port = process.env.PORT || 3000;
